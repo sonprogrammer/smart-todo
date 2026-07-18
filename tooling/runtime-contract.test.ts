@@ -21,8 +21,8 @@ describe("runtime contract", () => {
 
     expect(packageJson.dependencies?.next).toMatch(/^\^16\./);
     expect(packageJson.devDependencies?.["eslint-config-next"]).toMatch(/^\^16\./);
-    expect(packageJson.engines?.node).toBe(">=20.9.0");
-    expect(packageJson.devDependencies?.node).toBe("20.11.1");
+    expect(packageJson.engines?.node).toBe(">=20.11.1");
+    expect(packageJson.devDependencies).not.toHaveProperty("node");
     expect(nodeVersion).toBe("20.11.1");
   });
 });

@@ -26,3 +26,25 @@ FE-01-FIX에서 `package.json`을 Next.js 16 기준으로 되돌리고 `engines.
 FE-01-FIX 후 프레임워크 기준은 `docs/ARCHITECTURE.md`의 `Next.js 16 App Router / React 19`와 다시 일치한다.
 
 단, FE-01 화면은 여전히 목록/빈 상태의 최소 렌더링만 구현되어 있으며, `docs/ARCHITECTURE.md`에 정의된 TanStack Query, Route Handler, Supabase 저장소 흐름은 FE-02/BE 단계에서 연결되어야 한다. 이 연결 시점과 순서는 기존 `tasks/TASKS.md`의 후속 작업 범위로 남긴다.
+
+## FE-01-RUNTIME 반영 결과
+
+FE-01-RUNTIME에서 Planner 결정에 따라 로컬 `node@20.11.1` devDependency 우회 방식을 제거했다.
+
+반영 내용은 다음과 같다.
+
+- nvm에 Node.js `20.11.1`을 설치했다.
+- nvm default alias를 `20.11.1`로 설정했다.
+- `.nvmrc`는 `20.11.1`을 유지한다.
+- `package.json`의 `engines.node`를 `>=20.11.1`로 정렬했다.
+- `package.json` devDependencies에서 `node`를 제거했다.
+- Next.js 16 / React 19 기준은 유지했다.
+- `npm install`에서 `EBADENGINE` 경고를 없애기 위해 `typescript-eslint`를 `8.46.0`으로 직접 고정했다. `eslint-config-next@16.2.10`의 `typescript-eslint` 요구 범위가 `^8.46.0`이므로 Next.js 16 기준 안에서 동작한다.
+
+검증 중 확인한 환경 차이는 다음과 같다.
+
+- `source ~/.nvm/nvm.sh && nvm use 20.11.1` 적용 셸: `node -v`가 `v20.11.1`이다.
+- interactive zsh: nvm default alias를 통해 `node -v`가 `v20.11.1`이다.
+- Codex의 plain non-interactive login shell: `.zshrc`를 읽지 않아 `node -v`가 여전히 `v20.8.0`이다.
+
+FE-02는 nvm이 적용된 프로젝트 셸, 즉 `node -v`가 `v20.11.1` 또는 그 이상으로 확인되는 환경에서만 진행해야 한다. plain non-interactive shell에서 `.zshrc`를 읽지 않는 동작을 바꿀지 여부는 사용자 셸 정책에 해당하므로 구현자가 추가로 결정하지 않는다.

@@ -16,11 +16,19 @@
 - 상태: 완료 (2026-07-18)
 - 완료 조건: Node.js 기준이 Next.js 16 요구사항을 만족하도록 명시되고, package.json이 Next.js 16 / React 19 기준으로 정렬되며, lint/test/build 검증이 통과한다.
 
+## FE-01-RUNTIME
+- ID: FE-01-RUNTIME
+- 목표: 시스템 설치 환경과 npm script 실행 환경을 동일한 Node.js 기준으로 통일하고 로컬 node devDependency 우회 방식을 제거한다.
+- 담당: Frontend
+- 선행 작업: FE-01-FIX
+- 상태: 완료 (2026-07-18)
+- 완료 조건: 시스템 Node.js가 프로젝트 기준을 만족하며, package.json에서 node devDependency가 제거되고, npm install/test/lint/build가 동일한 Node.js 런타임에서 경고 없이 통과한다.
+
 ## FE-02
 - ID: FE-02
 - 목표: 수동 todo 생성 폼을 구현한다.
 - 담당: Frontend
-- 선행 작업: FE-01-FIX
+- 선행 작업: FE-01-RUNTIME
 - 완료 조건: 사용자가 직접 입력한 todo가 저장되고 목록에 반영된다.
 
 ## FE-03
