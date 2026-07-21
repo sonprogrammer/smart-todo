@@ -28,3 +28,15 @@
 - Todo 수정, 완료, 삭제 API는 구현하지 않았다.
 - AI draft, ai_requests, agent_logs, 로그인, 권한, 외부 연동은 구현하지 않았다.
 - 아키텍처 문서는 변경하지 않았다.
+
+## CI/check 설정 결과
+
+작성일: 2026-07-21
+
+- PR #2 `backend/be-01-todo-storage-model`의 최신 커밋 `dfefa7a68b21772f72d993362df706e993cea3a5` 기준으로 GitHub check가 보고되지 않는 상태를 확인했다.
+- `gh pr checks 2` 결과: `no checks reported on the 'backend/be-01-todo-storage-model' branch`
+- 공통 GitHub Actions workflow를 `.github/workflows/ci.yml`에 추가했다.
+- CI는 `pull_request` to `main`과 `push` to `main`, `backend/**`, `front/**`에서 실행된다.
+- CI Node.js 버전은 프로젝트 기준과 동일한 `20.11.1`로 고정했다.
+- CI 최소 검증 항목은 `npm install`, `npm test`, `npm run lint`, `npm run build` 순서로 구성했다.
+- 기능 코드는 변경하지 않았다.
