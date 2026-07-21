@@ -40,3 +40,7 @@
 - CI Node.js 버전은 프로젝트 기준과 동일한 `20.11.1`로 고정했다.
 - CI 최소 검증 항목은 `npm install`, `npm test`, `npm run lint`, `npm run build` 순서로 구성했다.
 - 기능 코드는 변경하지 않았다.
+- CI 설정 커밋 후 PR #2 head는 `52fb36b21c4de41d8a308efe2986ee8d9ceaefe3`로 갱신되었다. 요청 기준 커밋 `dfefa7a68b21772f72d993362df706e993cea3a5`의 기능 변경 위에 CI 설정만 추가한 커밋이다.
+- `gh pr checks 2 --watch --interval 10` 결과 `npm verify` check 2건이 모두 통과했다.
+- push 이벤트 check: `npm verify`, pass, 38s, https://github.com/sonprogrammer/smart-todo/actions/runs/29814674016/job/88583144929
+- pull_request 이벤트 check: `npm verify`, pass, 41s, https://github.com/sonprogrammer/smart-todo/actions/runs/29814675958/job/88583151166
