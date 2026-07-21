@@ -8,11 +8,27 @@
 - 상태: 완료 (2026-07-18)
 - 완료 조건: 저장된 todo 목록을 조회해 화면에 표시하고, 데이터가 없을 때 빈 상태가 표시된다.
 
+## FE-01-FIX
+- ID: FE-01-FIX
+- 목표: 아키텍처 기준에 맞게 Next.js 16 실행 환경을 고정하고 FE-01의 임시 Next.js 15 조치를 제거한다.
+- 담당: Frontend
+- 선행 작업: FE-01
+- 상태: 완료 (2026-07-18)
+- 완료 조건: Node.js 기준이 Next.js 16 요구사항을 만족하도록 명시되고, package.json이 Next.js 16 / React 19 기준으로 정렬되며, lint/test/build 검증이 통과한다.
+
+## FE-01-RUNTIME
+- ID: FE-01-RUNTIME
+- 목표: 시스템 설치 환경과 npm script 실행 환경을 동일한 Node.js 기준으로 통일하고 로컬 node devDependency 우회 방식을 제거한다.
+- 담당: Frontend
+- 선행 작업: FE-01-FIX
+- 상태: 완료 (2026-07-18)
+- 완료 조건: 시스템 Node.js가 프로젝트 기준을 만족하며, package.json에서 node devDependency가 제거되고, npm install/test/lint/build가 동일한 Node.js 런타임에서 경고 없이 통과한다.
+
 ## FE-02
 - ID: FE-02
 - 목표: 수동 todo 생성 폼을 구현한다.
 - 담당: Frontend
-- 선행 작업: FE-01
+- 선행 작업: FE-01-RUNTIME
 - 완료 조건: 사용자가 직접 입력한 todo가 저장되고 목록에 반영된다.
 
 ## FE-03
@@ -50,6 +66,7 @@
 - 목표: Todo 데이터 모델과 저장소 초기 구조를 구현한다.
 - 담당: Backend
 - 선행 작업: 없음
+- 상태: 완료 (2026-07-18)
 - 완료 조건: todo의 제목, 설명, 우선순위, 마감일, 하위 작업, 완료 상태를 저장하고 조회할 수 있다.
 
 ## BE-02

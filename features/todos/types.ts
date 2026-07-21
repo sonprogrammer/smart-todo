@@ -19,3 +19,13 @@ export type Todo = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type CreateTodoInput = {
+  title: string;
+  description?: string;
+  priority: Priority;
+  dueDate?: string;
+  completed?: boolean;
+  sourceTraceId?: string | null;
+  subtasks?: (string | { title: string; completed?: boolean })[];
+};
