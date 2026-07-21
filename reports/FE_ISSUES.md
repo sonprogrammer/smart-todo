@@ -48,3 +48,16 @@ FE-01-RUNTIME에서 Planner 결정에 따라 로컬 `node@20.11.1` devDependency
 - Codex의 plain non-interactive login shell: `.zshrc`를 읽지 않아 `node -v`가 여전히 `v20.8.0`이다.
 
 FE-02는 nvm이 적용된 프로젝트 셸, 즉 `node -v`가 `v20.11.1` 또는 그 이상으로 확인되는 환경에서만 진행해야 한다. plain non-interactive shell에서 `.zshrc`를 읽지 않는 동작을 바꿀지 여부는 사용자 셸 정책에 해당하므로 구현자가 추가로 결정하지 않는다.
+
+## FE-02 임시 저장 경계
+
+FE-02는 BE/Supabase가 아직 구현되지 않은 상태에서 수동 todo 생성 폼과 목록 반영을 구현했다.
+
+아키텍처의 최종 데이터 흐름은 TanStack Query -> `/api/todos*` Route Handler -> Supabase이지만, FE-02에서는 다음 제한을 두고 브라우저 임시 저장소를 사용했다.
+
+- UI 컴포넌트는 저장소에 직접 접근하지 않고 `features/todos/api.ts` 함수만 호출한다.
+- TanStack Query 경계는 `features/todos/queries.ts`에 둔다.
+- 실제 저장 구현은 `features/todos/api.ts` 내부의 localStorage 기반 임시 저장으로 제한한다.
+- Supabase 연결, Route Handler, AI draft/trace log는 구현하지 않았다.
+
+BE-02 또는 관련 백엔드 작업에서 `features/todos/api.ts` 내부 구현을 `/api/todos` 호출로 교체해야 한다. 이 교체 시점과 저장소 전환 방식은 Planner가 후속 작업에서 판단해야 한다.
