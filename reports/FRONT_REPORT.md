@@ -34,3 +34,31 @@
 `FE-02-FIX-01`의 Frontend 구현과 전체 검증이 완료됐다.
 
 `FE-03`은 `tasks/FRONT_TASK.md` 기준상 다음 Frontend 작업으로 진행 가능하다.
+
+## CI/check 설정
+
+- 대상 PR: `#1`
+- 브랜치: `front/fix-fe-02-subtasks`
+- 확인한 PR head: `f52416b581a5bfa6bd1a3c7ba31ce8d94a3f8301`
+- 확인 당시 GitHub check 상태: `statusCheckRollup`이 빈 배열로, PR에 보고된 check가 없었다.
+- 추가한 workflow: `.github/workflows/ci.yml`
+- workflow 검증 항목:
+  - `npm install`
+  - `npm test`
+  - `npm run lint`
+  - `npm run build`
+- workflow Node.js 기준: `20.11.1`
+- GitHub Actions check 상태: PR #1에서 `install, test, lint, build` check가 생성됐고 통과했다.
+- GitHub Actions 실행 결과:
+  - `npm install`: 통과
+  - `npm test`: 통과
+  - `npm run lint`: 통과
+  - `npm run build`: 통과
+
+로컬 재검증 결과:
+
+- `source ~/.nvm/nvm.sh && nvm use 20.11.1 && node -v`: `v20.11.1`
+- `npm install`: 통과
+- `npm test`: 통과, 8 files / 11 tests
+- `npm run lint`: 통과
+- `npm run build`: 통과
