@@ -29,6 +29,32 @@
 - `npm run lint`: 통과
 - `npm run build`: 통과
 
+## PR #1 main 동기화 및 CI 충돌 정리
+
+- 대상 PR: `#1`
+- 브랜치: `front/fix-fe-02-subtasks`
+- 반영한 main: `origin/main` (`e7a5540dcd86fe7dbe3e5d96fe6b30fee3dd7648`)
+- 충돌 파일: `.github/workflows/ci.yml`
+- 정리 기준: main의 공통 CI 정의를 유지했다.
+- 기능 코드 변경: FE 기능 코드는 충돌 해소를 위해 별도로 수정하지 않았다.
+- workflow 검증 항목:
+  - `npm install`
+  - `npm test`
+  - `npm run lint`
+  - `npm run build`
+
+정리 후 로컬 재검증 결과:
+
+- `source ~/.nvm/nvm.sh && nvm use 20.11.1 && node -v`: `v20.11.1`
+- `npm install`: 통과
+- `npm test`: 통과
+- `npm run lint`: 통과
+- `npm run build`: 통과
+
+정리 후 GitHub Actions check 상태:
+
+- PR #1 최신 head 기준 `gh pr checks 1`에서 `npm verify` check 통과를 확인한다.
+
 ## 상태
 
 `FE-02-FIX-01`의 Frontend 구현과 전체 검증이 완료됐다.

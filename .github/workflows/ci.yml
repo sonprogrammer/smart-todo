@@ -7,34 +7,32 @@ on:
   push:
     branches:
       - main
+      - "backend/**"
       - "front/**"
 
 jobs:
   verify:
-    name: install, test, lint, build
+    name: npm verify
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20.11.1"
+          node-version: 20.11.1
           cache: npm
-
-      - name: Verify Node.js version
-        run: node -v
 
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests
+      - name: Test
         run: npm test
 
-      - name: Run lint
+      - name: Lint
         run: npm run lint
 
-      - name: Run build
+      - name: Build
         run: npm run build

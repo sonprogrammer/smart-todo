@@ -19,3 +19,13 @@ PR #1의 기존 head는 `f52416b581a5bfa6bd1a3c7ba31ce8d94a3f8301`였고, 확인
 현재 저장소에는 `.github/workflows`가 없어서 기존 커밋 `f52416b581a5bfa6bd1a3c7ba31ce8d94a3f8301` 자체에 새 check를 생성할 수 없었다. GitHub Actions check를 PR에 보고하려면 workflow 파일을 추가한 새 커밋이 필요하다.
 
 따라서 CI 설정 추가 후 PR #1의 head 커밋은 변경된다. 기존 `f52416b581a5bfa6bd1a3c7ba31ce8d94a3f8301` 기준 check를 유지해야 하는지, 아니면 CI 설정 커밋을 포함한 최신 PR head 기준 check를 merge 기준으로 볼지는 Planner 판단이 필요하다.
+
+## PR #1 main 동기화 충돌
+
+PR #2가 먼저 main에 merge되면서 PR #1의 `.github/workflows/ci.yml`도 add/add 충돌 상태가 됐다.
+
+정리 기준은 main에 반영된 공통 CI 정의로 두었다. 이 기준은 `backend/**`와 `front/**` 브랜치 push 및 main 대상 pull request에서 동일한 `npm verify` job을 실행한다.
+
+이번 정리는 CI 설정 충돌 해소와 main 동기화에 한정했다. FE 기능 코드는 충돌 해소 목적으로 별도 수정하지 않았다.
+
+현재 추가 Planner 판단이 필요한 새 차단 이슈는 없다.
